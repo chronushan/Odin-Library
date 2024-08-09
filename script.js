@@ -13,19 +13,27 @@ function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
 
-function displayBookToLibrary(myLibrary) {
-	for (const books of myLibrary) {
-		for (const prop in books) {
-			console.log(books[prop]);
-		}
-	}
-}
+// function displayBookToLibrary(myLibrary) {
+// 	for (const books of myLibrary) {
+// 		newtitle.textContent = books[author];
+// 		newauthor.textContent = books[title];
+// 		newpages.textContent = books[pages];
+
+// 		if (readstatus.checked == true) {
+// 			newstatus.textContent = "Read";
+// 		} else {
+// 			newstatus.textContent = "Not read yet";
+// 		}
+// 	}
+// }
 
 const button = document.querySelector("button");
 const title = document.querySelector("input.title");
 const author = document.querySelector("input.author");
 const pages = document.querySelector("input.pages");
 const readstatus = document.querySelector("input.status");
+
+const read = document.querySelector(".card .status");
 
 button.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -42,6 +50,14 @@ button.addEventListener("click", function (event) {
 	newpages.classList.add("pages");
 	const newstatus = document.createElement("p");
 	newstatus.classList.add("status");
+
+	const newbook = new Book(
+		title.value,
+		author.value,
+		pages.value,
+		readstatus.checked
+	);
+	addBookToLibrary(newbook);
 
 	newtitle.textContent = title.value;
 	newauthor.textContent = author.value;
@@ -69,4 +85,12 @@ button.addEventListener("click", function (event) {
 	// div.appendChild(newauthor);
 	// div.appendChild(newpages);
 	div.appendChild(newstatus);
+});
+
+read.addEventListener("click", function () {
+	if (read.textContent == "Read") {
+		read.textContent = "Not read yet";
+	} else if (read.textContent == "Not read yet") {
+		read.textContent = "Read";
+	}
 });
