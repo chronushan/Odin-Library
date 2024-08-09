@@ -1,7 +1,7 @@
 const myLibrary = [];
 
 function Book(author, title, pages, status) {
-	// the constructor...
+	// Book object constructor
 	this.author = author;
 	this.title = title;
 	this.pages = pages;
@@ -9,6 +9,6 @@ function Book(author, title, pages, status) {
 }
 
 function addBookToLibrary() {
-	// do stuff here
+	// Add book to library array
 	myLibrary.push();
 }

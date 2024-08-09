@@ -34,6 +34,7 @@ form {
 label {
 	color: #edeec0;
 	margin: 30px 30px 0px 30px;
+	font-size: 1.2rem;
 }
 
 input {
@@ -43,8 +44,27 @@ input {
 
 button {
 	width: 300px;
-	font-size: 2.5rem;
-	border-radius: 20px;
+	font-size: 2rem;
+	border-radius: 30px;
 	border: none;
 	align-self: center;
+	color: #433e0e;
+	padding: 10px;
+}
+
+label[for="status"] {
+	margin: 0;
+}
+
+div.status {
+	display: flex;
+	margin: 20px;
+	justify-content: center;
+	align-self: center;
+	margin-bottom: 50px;
+}
+
+input[type="checkbox"] {
+	width: 80px;
+	margin: 0;
 }
