@@ -21,8 +21,52 @@ function displayBookToLibrary(myLibrary) {
 	}
 }
 
-const Harry = new Book("Harry Potter", "J.K Rowling", 300, "read");
+const button = document.querySelector("button");
+const title = document.querySelector("input.title");
+const author = document.querySelector("input.author");
+const pages = document.querySelector("input.pages");
+const readstatus = document.querySelector("input.status");
 
-addBookToLibrary(Harry);
+button.addEventListener("click", function (event) {
+	event.preventDefault();
 
-displayBookToLibrary(myLibrary);
+	const cards = document.querySelector(".cards");
+	const div = document.createElement("div");
+	div.classList.add("card");
+
+	const newtitle = document.createElement("h2");
+	newtitle.classList.add("title");
+	const newauthor = document.createElement("p");
+	newauthor.classList.add("author");
+	const newpages = document.createElement("p");
+	newpages.classList.add("pages");
+	const newstatus = document.createElement("p");
+	newstatus.classList.add("status");
+
+	newtitle.textContent = title.value;
+	newauthor.textContent = author.value;
+	newpages.textContent = pages.value;
+
+	if (readstatus.checked == true) {
+		newstatus.textContent = "Read";
+	} else {
+		newstatus.textContent = "Not read yet";
+	}
+
+	title.value = "";
+	author.value = "";
+	pages.value = "";
+	readstatus.checked = false;
+
+	const upper = document.createElement("div");
+	upper.classList.add("upper");
+	upper.appendChild(newtitle);
+	upper.appendChild(newauthor);
+	upper.appendChild(newpages);
+
+	cards.appendChild(div);
+	div.appendChild(upper);
+	// div.appendChild(newauthor);
+	// div.appendChild(newpages);
+	div.appendChild(newstatus);
+});
