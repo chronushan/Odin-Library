@@ -65,8 +65,10 @@ button.addEventListener("click", function (event) {
 
 	if (readstatus.checked == true) {
 		newstatus.textContent = "Read";
+		newbook.readstatus = true;
 	} else {
 		newstatus.textContent = "Not read yet";
+		newbook.readstatus = false;
 	}
 
 	title.value = "";
@@ -85,6 +87,16 @@ button.addEventListener("click", function (event) {
 	// div.appendChild(newauthor);
 	// div.appendChild(newpages);
 	div.appendChild(newstatus);
+
+	newstatus.addEventListener("click", function () {
+		if (newbook.readstatus == true) {
+			newstatus.textContent = "Not read yet";
+			newbook.readstatus = false;
+		} else if (newbook.readstatus == false) {
+			newstatus.textContent = "Read";
+			newbook.readstatus = true;
+		}
+	});
 });
 
 read.addEventListener("click", function () {
