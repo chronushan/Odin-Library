@@ -97,10 +97,16 @@ input[type="checkbox"] {
 	content: "by ";
 }
 
-.card .status {
+.card .status,
+.card .remove {
 	width: fit-content;
 	background-color: #433e0e;
 	padding: 6px 10px;
 	border-radius: 10px;
 	border: none;
+}
+
+.lower {
+	display: flex;
+	justify-content: space-between;
 }
