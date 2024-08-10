@@ -50,6 +50,8 @@ button.addEventListener("click", function (event) {
 	newpages.classList.add("pages");
 	const newstatus = document.createElement("p");
 	newstatus.classList.add("status");
+	const remove = document.createElement("p");
+	remove.classList.add("remove");
 
 	const newbook = new Book(
 		title.value,
@@ -62,6 +64,7 @@ button.addEventListener("click", function (event) {
 	newtitle.textContent = title.value;
 	newauthor.textContent = author.value;
 	newpages.textContent = pages.value;
+	remove.textContent = "Remove";
 
 	if (readstatus.checked == true) {
 		newstatus.textContent = "Read";
@@ -82,11 +85,17 @@ button.addEventListener("click", function (event) {
 	upper.appendChild(newauthor);
 	upper.appendChild(newpages);
 
+	const lower = document.createElement("div");
+	lower.classList.add("lower");
+	lower.appendChild(newstatus);
+	lower.appendChild(remove);
+
 	cards.appendChild(div);
 	div.appendChild(upper);
+	div.appendChild(lower);
 	// div.appendChild(newauthor);
 	// div.appendChild(newpages);
-	div.appendChild(newstatus);
+	// div.appendChild(newstatus);
 
 	newstatus.addEventListener("click", function () {
 		if (newbook.readstatus == true) {
