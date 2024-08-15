@@ -8,6 +8,9 @@ function Book(author, title, pages, status) {
 	this.status = status;
 }
 
+const sample = new Book("The Phantom Tollbooth", "Norton Jester", "272", true);
+addBookToLibrary(sample);
+
 function addBookToLibrary(book) {
 	// Add book to library array
 	myLibrary.push(book);
@@ -32,7 +35,7 @@ const title = document.querySelector("input.title");
 const author = document.querySelector("input.author");
 const pages = document.querySelector("input.pages");
 const readstatus = document.querySelector("input.status");
-const remove = document.querySelector("remove");
+const remove = document.querySelector(".remove");
 const cards = document.querySelector(".cards");
 
 const read = document.querySelector(".card .status");
@@ -45,12 +48,9 @@ read.addEventListener("click", function () {
 	}
 });
 
-// remove.addEventListener("click", function () {});
-
-// a new function to read from the myLibrary array and display it
-
 button.addEventListener("click", function (event) {
 	event.preventDefault();
+
 	const newbook = new Book(
 		title.value,
 		author.value,
@@ -59,125 +59,76 @@ button.addEventListener("click", function (event) {
 	);
 	addBookToLibrary(newbook);
 
-	// const div = document.createElement("div");
-	// div.classList.add("card");
+	title.value = "";
+	author.value = "";
+	pages.value = "";
 
-	// const newtitle = document.createElement("h2");
-	// newtitle.classList.add("title");
-	// const newauthor = document.createElement("p");
-	// newauthor.classList.add("author");
-	// const newpages = document.createElement("p");
-	// newpages.classList.add("pages");
-	// const newstatus = document.createElement("p");
-	// newstatus.classList.add("status");
-	// const newremove = document.createElement("p");
-	// newremove.classList.add("remove");
+	function display() {
+		for (let i = 0; i < myLibrary.length; i++) {
+			const div = document.createElement("div");
+			div.classList.add("card");
+			div.dataset.index = myLibrary.indexOf(newbook);
 
-	// newtitle.textContent = newbook.title;
-	// newauthor.textContent = newbook.author;
-	// newpages.textContent = newbook.pages;
-	// newremove.textContent = "Remove";
+			const newtitle = document.createElement("h2");
+			newtitle.classList.add("title");
+			const newauthor = document.createElement("p");
+			newauthor.classList.add("author");
+			const newpages = document.createElement("p");
+			newpages.classList.add("pages");
+			const newstatus = document.createElement("p");
+			newstatus.classList.add("status");
+			const newremove = document.createElement("p");
+			newremove.classList.add("remove");
 
-	// if (readstatus.checked == true) {
-	// 	newstatus.textContent = "Read";
-	// 	newbook.readstatus = true;
-	// } else {
-	// 	newstatus.textContent = "Not read yet";
-	// 	newbook.readstatus = false;
-	// }
+			const upper = document.createElement("div");
+			upper.classList.add("upper");
+			upper.appendChild(newtitle);
+			upper.appendChild(newauthor);
+			upper.appendChild(newpages);
 
-	// title.value = "";
-	// author.value = "";
-	// pages.value = "";
-	// readstatus.checked = false;
+			const lower = document.createElement("div");
+			lower.classList.add("lower");
+			lower.appendChild(newstatus);
+			lower.appendChild(newremove);
 
-	// const upper = document.createElement("div");
-	// upper.classList.add("upper");
-	// upper.appendChild(newtitle);
-	// upper.appendChild(newauthor);
-	// upper.appendChild(newpages);
+			cards.appendChild(div);
+			div.appendChild(upper);
+			div.appendChild(lower);
 
-	// const lower = document.createElement("div");
-	// lower.classList.add("lower");
-	// lower.appendChild(newstatus);
-	// lower.appendChild(newremove);
+			newremove.textContent = "Remove";
+			newtitle.textContent = myLibrary[i].title;
+			newauthor.textContent = myLibrary[i].author;
+			newpages.textContent = myLibrary[i].pages;
 
-	// cards.appendChild(div);
-	// div.appendChild(upper);
-	// div.appendChild(lower);
-
-	// newstatus.addEventListener("click", function () {
-	// 	if (newbook.readstatus == true) {
-	// 		newstatus.textContent = "Not read yet";
-	// 		newbook.readstatus = false;
-	// 	} else if (newbook.readstatus == false) {
-	// 		newstatus.textContent = "Read";
-	// 		newbook.readstatus = true;
-	// 	}
-	// });
-
-	display();
-});
-
-function display() {
-	for (const i = 0; i < myLibrary.length; i++) {
-		const div = document.createElement("div");
-		div.classList.add("card");
-
-		const newtitle = document.createElement("h2");
-		newtitle.classList.add("title");
-		const newauthor = document.createElement("p");
-		newauthor.classList.add("author");
-		const newpages = document.createElement("p");
-		newpages.classList.add("pages");
-		const newstatus = document.createElement("p");
-		newstatus.classList.add("status");
-		const newremove = document.createElement("p");
-		newremove.classList.add("remove");
-
-		newtitle.textContent = myLibrary[i].title;
-		newauthor.textContent = myLibrary[i].author;
-		newpages.textContent = myLibrary[i].pages;
-		newremove.textContent = "Remove";
-
-		if (readstatus.checked == true) {
-			newstatus.textContent = "Read";
-			myLibrary[i].readstatus = true;
-		} else {
-			newstatus.textContent = "Not read yet";
-			myLibrary[i].readstatus = false;
-		}
-
-		title.value = "";
-		author.value = "";
-		pages.value = "";
-		readstatus.checked = false;
-
-		const upper = document.createElement("div");
-		upper.classList.add("upper");
-		upper.appendChild(newtitle);
-		upper.appendChild(newauthor);
-		upper.appendChild(newpages);
-
-		const lower = document.createElement("div");
-		lower.classList.add("lower");
-		lower.appendChild(newstatus);
-		lower.appendChild(newremove);
-
-		cards.appendChild(div);
-		div.appendChild(upper);
-		div.appendChild(lower);
-
-		newstatus.addEventListener("click", function () {
-			if (myLibrary[i].readstatus == true) {
-				newstatus.textContent = "Not read yet";
-				myLibrary[i].readstatus = false;
-			} else if (nmyLibrary[i].readstatus == false) {
+			if (readstatus.checked == true) {
 				newstatus.textContent = "Read";
-				myLibrary[i].readstatus = true;
+				myLibrary[i].status = true;
+			} else {
+				newstatus.textContent = "Not read yet";
+				myLibrary[i].status = false;
 			}
-		});
-	}
-}
 
-display();
+			// TODO: make remove button functional
+
+			remove.addEventListener("click", function () {
+				// myLibrary.splice(i, 1);
+				newremove.textContent = "removed";
+				// cards.removeChild(
+				// 	document.querySelector(`.card[data-index]=${myLibrary[i]}`)
+				// );
+			});
+
+			newstatus.addEventListener("click", function () {
+				if (myLibrary[i].readstatus == true) {
+					newstatus.textContent = "Not read yet";
+					myLibrary[i].status = false;
+				} else if (myLibrary[i].readstatus == false) {
+					newstatus.textContent = "Read";
+					myLibrary[i].status = true;
+				}
+			});
+		}
+	}
+	display();
+	readstatus.checked = false;
+});
