@@ -29,63 +29,67 @@ addBookToLibrary(example);
 function removeBookFromLibrary() {}
 //TODO: make function that only adds new books from the array. If it exists, don't add, or just reset and load the whole library from the beginning
 function display() {
+	cards.innerHTML = "";
 	for (let i = 0; i < myLibrary.length; i++) {
-		const indvCard = document.createElement("div");
-		indvCard.classList.add("card");
-		indvCard.dataset.index = i;
+		if (myLibrary[i] === myLibrary[i]) {
+			const indvCard = document.createElement("div");
+			indvCard.classList.add("card");
+			indvCard.dataset.index = i;
 
-		const newtitle = document.createElement("h2");
-		newtitle.classList.add("title");
-		const newauthor = document.createElement("p");
-		newauthor.classList.add("author");
-		const newpages = document.createElement("p");
-		newpages.classList.add("pages");
-		const newstatus = document.createElement("p");
-		newstatus.classList.add("status");
-		const newremove = document.createElement("p");
-		newremove.classList.add("remove");
+			const newtitle = document.createElement("h2");
+			newtitle.classList.add("title");
+			const newauthor = document.createElement("p");
+			newauthor.classList.add("author");
+			const newpages = document.createElement("p");
+			newpages.classList.add("pages");
+			const newstatus = document.createElement("p");
+			newstatus.classList.add("status");
+			const newremove = document.createElement("p");
+			newremove.classList.add("remove");
 
-		newtitle.textContent = myLibrary[i].title;
-		newauthor.textContent = myLibrary[i].author;
-		newpages.textContent = myLibrary[i].pages;
-		newremove.textContent = "Remove";
+			newtitle.textContent = myLibrary[i].title;
+			newauthor.textContent = myLibrary[i].author;
+			newpages.textContent = myLibrary[i].pages;
+			newremove.textContent = "Remove";
 
-		if (myLibrary[i].status == true) {
-			newstatus.textContent = "Read";
-		} else {
-			newstatus.textContent = "Not read yet";
-		}
-
-		const upper = document.createElement("div");
-		upper.classList.add("upper");
-		upper.appendChild(newtitle);
-		upper.appendChild(newauthor);
-		upper.appendChild(newpages);
-
-		const lower = document.createElement("div");
-		lower.classList.add("lower");
-		lower.appendChild(newstatus);
-		lower.appendChild(newremove);
-
-		cards.appendChild(indvCard);
-		indvCard.appendChild(upper);
-		indvCard.appendChild(lower);
-
-		const remove = document.querySelector(".remove");
-
-		remove.addEventListener("click", function () {
-			myLibrary.splice(i, i + 1);
-		});
-
-		newstatus.addEventListener("click", function () {
 			if (myLibrary[i].status == true) {
-				newstatus.textContent = "Not read yet";
-				myLibrary[i].status = false;
-			} else if (myLibrary[i].status == false) {
 				newstatus.textContent = "Read";
-				myLibrary[i].status = true;
+			} else {
+				newstatus.textContent = "Not read yet";
 			}
-		});
+
+			const upper = document.createElement("div");
+			upper.classList.add("upper");
+			upper.appendChild(newtitle);
+			upper.appendChild(newauthor);
+			upper.appendChild(newpages);
+
+			const lower = document.createElement("div");
+			lower.classList.add("lower");
+			lower.appendChild(newstatus);
+			lower.appendChild(newremove);
+
+			cards.appendChild(indvCard);
+			indvCard.appendChild(upper);
+			indvCard.appendChild(lower);
+
+			// erases book object from array when clicked
+			newremove.addEventListener("click", function () {
+				myLibrary.splice(i, 1);
+				display();
+			});
+
+			//changes status property of the book object when clicked
+			newstatus.addEventListener("click", function () {
+				if (myLibrary[i].status == true) {
+					newstatus.textContent = "Not read yet";
+					myLibrary[i].status = false;
+				} else if (myLibrary[i].status == false) {
+					newstatus.textContent = "Read";
+					myLibrary[i].status = true;
+				}
+			});
+		}
 	}
 }
 
