@@ -25,9 +25,6 @@ function addBookToLibrary(book) {
 const example = new Book("Norton Jester", "The Phantom Tollbooth", 272, true);
 addBookToLibrary(example);
 
-//TODO: make function that removes book from the array
-function removeBookFromLibrary() {}
-//TODO: make function that only adds new books from the array. If it exists, don't add, or just reset and load the whole library from the beginning
 function display() {
 	// Gave in, and got help from chatGPT. It was a very simple solution, empty the 'cards' div to refresh/reload the library array, and prevent duplicates from accumulating
 	cards.innerHTML = "";
