@@ -30,8 +30,9 @@ function removeBookFromLibrary() {}
 //TODO: make function that only adds new books from the array. If it exists, don't add, or just reset and load the whole library from the beginning
 function display() {
 	for (let i = 0; i < myLibrary.length; i++) {
-		const div = document.createElement("div");
-		div.classList.add("card");
+		const indvCard = document.createElement("div");
+		indvCard.classList.add("card");
+		indvCard.dataset.index = i;
 
 		const newtitle = document.createElement("h2");
 		newtitle.classList.add("title");
@@ -43,8 +44,6 @@ function display() {
 		newstatus.classList.add("status");
 		const newremove = document.createElement("p");
 		newremove.classList.add("remove");
-
-		const remove = document.querySelector(".remove");
 
 		newtitle.textContent = myLibrary[i].title;
 		newauthor.textContent = myLibrary[i].author;
@@ -68,12 +67,14 @@ function display() {
 		lower.appendChild(newstatus);
 		lower.appendChild(newremove);
 
-		cards.appendChild(div);
-		div.appendChild(upper);
-		div.appendChild(lower);
+		cards.appendChild(indvCard);
+		indvCard.appendChild(upper);
+		indvCard.appendChild(lower);
 
-		newremove.addEventListener("click", function () {
-			newremove.style.backgroundColor = "red";
+		const remove = document.querySelector(".remove");
+
+		remove.addEventListener("click", function () {
+			myLibrary.splice(i, i + 1);
 		});
 
 		newstatus.addEventListener("click", function () {
