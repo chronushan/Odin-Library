@@ -29,6 +29,7 @@ addBookToLibrary(example);
 function removeBookFromLibrary() {}
 //TODO: make function that only adds new books from the array. If it exists, don't add, or just reset and load the whole library from the beginning
 function display() {
+	// Gave in, and got help from chatGPT. It was a very simple solution, empty the 'cards' div to refresh/reload the library array, and prevent duplicates from accumulating
 	cards.innerHTML = "";
 	for (let i = 0; i < myLibrary.length; i++) {
 		if (myLibrary[i] === myLibrary[i]) {
@@ -74,6 +75,8 @@ function display() {
 			indvCard.appendChild(lower);
 
 			// erases book object from array when clicked
+
+			// gave in and got help from chatGPT. It was a simple solution, I had to add the even listener to the newly created 'remove' element, instead of '.remove' class element
 			newremove.addEventListener("click", function () {
 				myLibrary.splice(i, 1);
 				display();
