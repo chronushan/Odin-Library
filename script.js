@@ -34,9 +34,25 @@ function addBookToLibrary(title, author, status) {
 
 function displayBook(arr) {
 	for (book of arr) {
-		console.log(book.title + " by " + book.author);
+		let card = document.createElement("div");
+		card.classList.add("card");
+		let title = document.createElement("p");
+		title.textContent = book.title;
+		let author = document.createElement("p");
+		author.textContent = book.author;
+		let status = document.createElement("p");
+		if (book.status) {
+			status.textContent = "Read";
+		} else {
+			status.textContent = "Not read";
+		}
+
+		card.append(title, author, status);
+		body.appendChild(card);
 	}
 }
+
+displayBook(myLibrary);
 
 let newBookBtn = document.querySelector("#addBook");
 
@@ -54,5 +70,5 @@ newBookBtn.addEventListener("click", (e) => {
 	document.querySelector("#newAuthor").value = "";
 	document.querySelector("#newStatusRead").checked = true;
 	document.querySelector("#popup").close();
-	console.log(myLibrary);
+	displayBook(myLibrary);
 });
