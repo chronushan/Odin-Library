@@ -1,3 +1,5 @@
+let body = document.querySelector("body");
+
 let myLibrary = [
 	{
 		title: "Harry Potter",
@@ -17,15 +19,18 @@ function Book(title, author, status) {
 	this.status = status;
 }
 
-Book.prototype.toggleStatus = function () {};
+Book.prototype.toggleStatus = function () {
+	let toggleBtn = document.createElement("button");
+	toggleBtn.addEventListener("click", function (event) {
+		// document.querySelector()
+	});
+	body.appendChild(toggleBtn);
+};
 
 function addBookToLibrary(title, author, status) {
 	let newBook = new Book(title, author, status);
 	myLibrary.push(newBook);
 }
-
-addBookToLibrary("helo", "lol", true);
-console.log(myLibrary);
 
 function displayBook(arr) {
 	for (book of arr) {
@@ -33,9 +38,21 @@ function displayBook(arr) {
 	}
 }
 
-displayBook(myLibrary);
+let newBookBtn = document.querySelector("#addBook");
 
-// let newBook = document.querySelector(".newBook");
-// newBook.addEventListener("click", (event) => {
-// 	event.preventDefault();
-// });
+newBookBtn.addEventListener("click", (e) => {
+	let title = document.querySelector("#newTitle").value;
+	let author = document.querySelector("#newAuthor").value;
+	let status;
+	if (document.querySelector("#newStatusRead").checked) {
+		status = true;
+	} else {
+		status = false;
+	}
+	addBookToLibrary(title, author, status);
+	document.querySelector("#newTitle").value = "";
+	document.querySelector("#newAuthor").value = "";
+	document.querySelector("#newStatusRead").checked = true;
+	document.querySelector("#popup").close();
+	console.log(myLibrary);
+});

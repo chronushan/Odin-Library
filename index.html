@@ -17,6 +17,38 @@
 		>
 			New Book
 		</button>
-		<dialog id="popup">Pop up</dialog>
+		<dialog id="popup">
+			<p>Add a new book:</p>
+			<form action="">
+				<div>
+					<label for="newTitle">Title: </label>
+					<input type="text" id="newTitle" />
+				</div>
+				<div>
+					<label for="newAuthor">Author: </label>
+					<input type="text" id="newAuthor" />
+				</div>
+				<div>
+					<label for="newStatusRead">Read</label>
+					<input
+						name="newStatus"
+						type="radio"
+						id="newStatusRead"
+						value="read"
+						checked
+					/>
+				</div>
+				<div>
+					<label for="newStatusNotRead">Not read</label>
+					<input
+						name="newStatus"
+						type="radio"
+						id="newStatusNotRead"
+						value="not read"
+					/>
+				</div>
+				<button id="addBook" type="button">Add</button>
+			</form>
+		</dialog>
 	</body>
 </html>
