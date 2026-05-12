@@ -47,8 +47,13 @@ function displayBook(arr) {
 		} else {
 			status.textContent = "Not read";
 		}
+		let removeBtn = document.createElement("button");
+		removeBtn.textContent = "Remove";
+		removeBtn.addEventListener("click", (e) => {
+			e.preventDefault();
+		});
 
-		card.append(title, author, status);
+		card.append(title, author, status, removeBtn);
 		body.appendChild(card);
 	}
 }
