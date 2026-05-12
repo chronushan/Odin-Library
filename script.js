@@ -23,11 +23,7 @@ function Book(title, author, status, id) {
 }
 
 Book.prototype.toggleStatus = function () {
-	let toggleBtn = document.createElement("button");
-	toggleBtn.addEventListener("click", function (event) {
-		// document.querySelector()
-	});
-	body.appendChild(toggleBtn);
+	card.appendChild(toggleBtn);
 };
 
 function addBookToLibrary(title, author, status, id) {
@@ -37,14 +33,16 @@ function addBookToLibrary(title, author, status, id) {
 
 function displayBook(arr) {
 	document.querySelectorAll(".card").forEach((a) => a.remove());
-	for (book of arr) {
+	for (let book of arr) {
 		let card = document.createElement("div");
 		card.classList.add("card");
 		let title = document.createElement("p");
+		title.classList.add("title");
 		title.textContent = "Title: " + book.title;
 		let author = document.createElement("p");
 		author.textContent = "Author: " + book.author;
 		let status = document.createElement("p");
+		status.classList.add("status");
 		if (book.status) {
 			status.textContent = "Read";
 		} else {
@@ -54,9 +52,30 @@ function displayBook(arr) {
 		removeBtn.textContent = "Remove";
 		removeBtn.addEventListener("click", (e) => {
 			e.preventDefault();
+			card.remove();
+			let index = arr.indexOf(book);
+			arr.splice(index, 1);
 		});
 
-		card.append(title, author, status, removeBtn);
+		let toggleBtn = document.createElement("button");
+		if (status.textContent == "Read") {
+			toggleBtn.textContent = "Not Read";
+		} else {
+			toggleBtn.textContent = "Read";
+		}
+
+		toggleBtn.addEventListener("click", function (event) {
+			event.preventDefault();
+			if (status.textContent == "Read") {
+				status.textContent = "Not Read";
+				toggleBtn.textContent = "Not Read";
+			} else {
+				status.textContent = "Read";
+				toggleBtn.textContent = "Read";
+			}
+		});
+
+		card.append(title, author, status, removeBtn, toggleBtn);
 		body.appendChild(card);
 	}
 }
