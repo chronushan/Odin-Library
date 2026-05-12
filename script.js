@@ -68,10 +68,12 @@ function displayBook(arr) {
 			event.preventDefault();
 			if (status.textContent == "Read") {
 				status.textContent = "Not Read";
-				toggleBtn.textContent = "Not Read";
+				toggleBtn.textContent = "Read";
+				book.status = false;
 			} else {
 				status.textContent = "Read";
-				toggleBtn.textContent = "Read";
+				toggleBtn.textContent = "Not read";
+				book.status = true;
 			}
 		});
 
@@ -104,4 +106,10 @@ newBookBtn.addEventListener("click", (e) => {
 	// needs to only show
 	displayBook(myLibrary);
 	console.log(myLibrary);
+});
+
+document.querySelector("dialog").addEventListener("mousedown", (event) => {
+	if (event.target === event.currentTarget) {
+		event.currentTarget.close();
+	}
 });
