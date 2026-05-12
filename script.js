@@ -5,18 +5,21 @@ let myLibrary = [
 		title: "Harry Potter",
 		author: "J.K. Rowling",
 		status: true,
+		id: crypto.randomUUID(),
 	},
 	{
 		title: "Green Eggs and Ham",
 		author: "Dr. Seuss",
 		status: true,
+		id: crypto.randomUUID(),
 	},
 ];
 
-function Book(title, author, status) {
+function Book(title, author, status, id) {
 	this.title = title;
 	this.author = author;
 	this.status = status;
+	this.id = id;
 }
 
 Book.prototype.toggleStatus = function () {
@@ -27,8 +30,8 @@ Book.prototype.toggleStatus = function () {
 	body.appendChild(toggleBtn);
 };
 
-function addBookToLibrary(title, author, status) {
-	let newBook = new Book(title, author, status);
+function addBookToLibrary(title, author, status, id) {
+	let newBook = new Book(title, author, status, id);
 	myLibrary.push(newBook);
 }
 
@@ -71,7 +74,8 @@ newBookBtn.addEventListener("click", (e) => {
 	} else {
 		status = false;
 	}
-	addBookToLibrary(title, author, status);
+	let id = crypto.randomUUID();
+	addBookToLibrary(title, author, status, id);
 
 	document.querySelector("#newTitle").value = "";
 	document.querySelector("#newAuthor").value = "";
@@ -80,4 +84,5 @@ newBookBtn.addEventListener("click", (e) => {
 
 	// needs to only show
 	displayBook(myLibrary);
+	console.log(myLibrary);
 });
