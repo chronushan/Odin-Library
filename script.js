@@ -33,13 +33,14 @@ function addBookToLibrary(title, author, status) {
 }
 
 function displayBook(arr) {
+	document.querySelectorAll(".card").forEach((a) => a.remove());
 	for (book of arr) {
 		let card = document.createElement("div");
 		card.classList.add("card");
 		let title = document.createElement("p");
-		title.textContent = book.title;
+		title.textContent = "Title: " + book.title;
 		let author = document.createElement("p");
-		author.textContent = book.author;
+		author.textContent = "Author: " + book.author;
 		let status = document.createElement("p");
 		if (book.status) {
 			status.textContent = "Read";
@@ -66,9 +67,12 @@ newBookBtn.addEventListener("click", (e) => {
 		status = false;
 	}
 	addBookToLibrary(title, author, status);
+
 	document.querySelector("#newTitle").value = "";
 	document.querySelector("#newAuthor").value = "";
 	document.querySelector("#newStatusRead").checked = true;
 	document.querySelector("#popup").close();
+
+	// needs to only show
 	displayBook(myLibrary);
 });
