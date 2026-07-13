@@ -15,11 +15,20 @@ let myLibrary = [
 	},
 ];
 
-function Book(title, author, status, id) {
-	this.title = title;
-	this.author = author;
-	this.status = status;
-	this.id = id;
+// function Book(title, author, status, id) {
+// 	this.title = title;
+// 	this.author = author;
+// 	this.status = status;
+// 	this.id = id;
+// }
+
+class Book {
+	constructor(title, author, status, id) {
+		this.title = title;
+		this.author = author;
+		this.status = status;
+		this.id = id;
+	}
 }
 
 Book.prototype.toggleStatus = function () {
